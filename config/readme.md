@@ -1,6 +1,7 @@
 Some config files.
 
 It seems that the compilation only works in the following setups:
+- Ubuntu 22.04.*
 - OpenTelemac v9 release.
 - Numpy==1.25.1
 - Matplotlib==3.5.2
