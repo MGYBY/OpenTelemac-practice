@@ -1,7 +1,9 @@
 Some config files.
 
 It seems that the compilation only works in the following setups:
-- http://wiki.opentelemac.org/doku.php?id=installation_on_linux
+- Compilation guide: http://wiki.opentelemac.org/doku.php?id=installation_on_linux
+  
+Source code: https://gitlab.pam-retd.fr/otm/telemac-mascaret
 - Ubuntu 22.04.*
 - OpenTelemac v9 release.
 - Numpy==1.25.1
