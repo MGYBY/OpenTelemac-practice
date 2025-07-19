@@ -1,0 +1,108 @@
+/----------------------------------------------------------------------
+/
+/ ATHABASCA RIVER TEST CASE
+/
+/ Steering file for: TELEMAC2D
+/
+/----------------------------------------------------------------------
+/                      FILE DEFINITION
+/----------------------------------------------------------------------
+BOUNDARY CONDITIONS FILE                    = 'geo_bnd_mod.cli'
+GEOMETRY FILE                               = 'geo_river.slf'
+/ FORTRAN FILE                                = 'user_fortran'
+ASCII ATMOSPHERIC DATA FILE     = 'met_river_test.txt'
+RESULTS FILE                                = 't2d_river_results.slf'
+PRESSURE UNIT               = 1  / Pa (SI)
+/----------------------------------------------------------------------
+/                        GENERAL OPTIONS
+/----------------------------------------------------------------------
+TITLE = 'ATHABASCA RIVER'
+VARIABLES FOR GRAPHIC PRINTOUTS             = 'U,V,H,B'
+/ TIME STEP                                   = 6.
+/ NUMBER OF TIME STEPS                        = 3902400 / 3646080
+/ GRAPHIC PRINTOUT PERIOD                     = 14400
+/ LISTING PRINTOUT PERIOD                     = 600
+/
+/----------------------------------------------------------------------
+/  TRACER(S)
+/----------------------------------------------------------------------
+/
+DIFFUSION OF TRACERS                        = NO
+COEFFICIENT FOR DIFFUSION OF TRACERS        = 0.
+/
+/----------------------------------------------------------------------
+/                      INITIAL CONDITIONS
+/----------------------------------------------------------------------
+ORIGINAL DATE OF TIME                       = 2018;10;1
+ORIGINAL HOUR OF TIME                       = 0;0;0
+/
+/ INITIAL TIME SET TO ZERO                    = YES
+/ PREVIOUS COMPUTATION FILE                   = 'ini_stlawrence.slf'
+/
+INITIAL CONDITIONS                          ='CONSTANT ELEVATION'
+INITIAL ELEVATION                           = 226.0
+INITIAL VALUES OF TRACERS                   = 0.0
+/
+/----------------------------------------------------------------------
+/                    BOUNDARY CONDITIONS
+/----------------------------------------------------------------------
+/ INLET; OUTLET
+LIQUID BOUNDARIES FILE                      = 'bnd_river_orig.txt'
+OPTION FOR LIQUID BOUNDARIES                = 1;1;1;1 / not sure whether this will match number of BCs
+VELOCITY PROFILES                           = 1;1;1;1 / not sure whether this will match number of BCs
+/
+/----------------------------------------------
+/  WIND
+/----------------------------------------------
+/
+WIND                                         = NO
+OPTION FOR WIND                              = 2
+COEFFICIENT OF WIND INFLUENCE                = 1.2615E-3
+COEFFICIENT OF WIND INFLUENCE VARYING WITH WIND SPEED = YES
+/-----------------------------------------------------------------------
+/                    Spherical coordinates
+/-----------------------------------------------------------------------
+SPHERICAL COORDINATES = NO
+/ SPATIAL PROJECTION TYPE : 3 / latitude-longitude (in degrees).
+LATITUDE OF ORIGIN POINT  = 58.3 / dummy?
+LONGITUDE OF ORIGIN POINT = -111.5 / dummy?
+CORIOLIS = YES
+CORIOLIS COEFFICIENT = 1.E-6
+/
+/ BOUND1 ( TEMPERATURE; FRAZIL ); BOUND2 ....
+/PRESCRIBED TRACERS VALUES                  = 0.0;0.0 ; 0.0;0.0
+/
+/----------------------------------------------------------------------
+/                       TURBULENCE MODEL
+/----------------------------------------------------------------------
+TURBULENCE MODEL                            = 1 / constant viscosity
+VELOCITY DIFFUSIVITY                        = .01
+/
+/----------------------------------------------------------------------
+/                      FRICTION PARAMETERS
+/----------------------------------------------------------------------
+LAW OF BOTTOM FRICTION                      = 4 / Manning”s formula
+FRICTION COEFFICIENT                        = .0225
+/
+/----------------------------------------------------------------------
+/  GENERAL INFORMATIONS - OUTPUTS
+/----------------------------------------------------------------------
+/
+EQUATIONS                        = 'SAINT-VENANT FV'
+OPTION OF THE HYDROSTATIC RECONSTRUCTION = 2
+/ VARIABLES FOR GRAPHIC PRINTOUTS  = 'U,V,H,S'
+/
+GRAPHIC PRINTOUT PERIOD          = 20000
+LISTING PRINTOUT PERIOD          = 1000
+MASS-BALANCE                     = YES
+TIME STEP                        = 6.
+DURATION                         = 777600
+DESIRED COURANT NUMBER           = 0.9
+VARIABLE TIME-STEP               = YES
+INFORMATION ABOUT SOLVER         = YES
+/
+/----------------------------------------------------------------------
+/  COUPLING WITH KHIONE
+/----------------------------------------------------------------------
+COUPLING WITH                               = 'KHIONE'
+KHIONE STEERING FILE                        = 'ice_river_orig.cas'
