@@ -1,0 +1,105 @@
+/----------------------------------------------------------------------
+/
+/ ATHABASCA RIVER TEST CASE
+/
+/ Steering file for: TELEMAC2D
+/
+/----------------------------------------------------------------------
+/                      FILE DEFINITION
+/----------------------------------------------------------------------
+BOUNDARY CONDITIONS FILE                    = 'geo_bnd.cli'
+GEOMETRY FILE                               = 'geo_lake.slf'
+/ FORTRAN FILE                                = 'user_fortran'
+/ ASCII ATMOSPHERIC DATA FILE     = 'met_lake.txt'
+BINARY ATMOSPHERIC DATA FILE    = 'wind_era5.slf'
+RESULTS FILE                                = 'r2d_ss_fv_hllc.slf'
+AIR PRESSURE                = YES
+PRESSURE UNIT               = 1  / Pa (SI)
+/----------------------------------------------------------------------
+/                        GENERAL OPTIONS
+/----------------------------------------------------------------------
+TITLE = 'ATHABASCA RIVER'
+VARIABLES FOR GRAPHIC PRINTOUTS             = 'U,V,H,B,S,X,Y,P'
+/
+/----------------------------------------------------------------------
+/  TRACER(S)
+/----------------------------------------------------------------------
+/
+DIFFUSION OF TRACERS                        = NO
+COEFFICIENT FOR DIFFUSION OF TRACERS        = 0.
+/
+/----------------------------------------------------------------------
+/                      INITIAL CONDITIONS
+/----------------------------------------------------------------------
+ORIGINAL DATE OF TIME                       = 2019;10;29
+ORIGINAL HOUR OF TIME                       = 23;0;0
+/
+INITIAL TIME SET TO ZERO                    = YES
+/ PREVIOUS COMPUTATION FILE                   = 'ini_file.slf'
+/
+INITIAL CONDITIONS                          ='CONSTANT ELEVATION'
+INITIAL ELEVATION                           = 0.0
+INITIAL VALUES OF TRACERS                   = 0.0
+/
+/----------------------------------------------------------------------
+/                    BOUNDARY CONDITIONS
+/----------------------------------------------------------------------
+/ INLET; OUTLET
+/ LIQUID BOUNDARIES FILE                      = 'bnd_river_orig.txt'
+/ OPTION FOR LIQUID BOUNDARIES                = 1;1;1;1 / not sure whether this will match number of BCs
+/ VELOCITY PROFILES                           = 1;1;1;1 / not sure whether this will match number of BCs
+/
+/----------------------------------------------
+/  WIND
+/----------------------------------------------
+/
+WIND                                         = YES
+OPTION FOR WIND                              = 3
+COEFFICIENT OF WIND INFLUENCE                = 1.1E-5
+COEFFICIENT OF WIND INFLUENCE VARYING WITH WIND SPEED = NO
+/ COEFFICIENT OF WIND INFLUENCE VARYING WITH WIND SPEED = YES
+/-----------------------------------------------------------------------
+/                    Spherical coordinates
+/-----------------------------------------------------------------------
+SPHERICAL COORDINATES = YES
+SPATIAL PROJECTION TYPE = 3 / latitude-longitude (in degrees).
+LATITUDE OF ORIGIN POINT  = 43.0 / dummy?
+LONGITUDE OF ORIGIN POINT = -77.5 / dummy?
+CORIOLIS = YES
+CORIOLIS COEFFICIENT = 1.E-6
+/
+/ BOUND1 ( TEMPERATURE; FRAZIL ); BOUND2 ....
+/PRESCRIBED TRACERS VALUES                  = 0.0;0.0 ; 0.0;0.0
+/
+/----------------------------------------------------------------------
+/                       TURBULENCE MODEL
+/----------------------------------------------------------------------
+TURBULENCE MODEL                            = 1 / constant viscosity
+VELOCITY DIFFUSIVITY                        = 0.025
+/
+/----------------------------------------------------------------------
+/                      FRICTION PARAMETERS
+/----------------------------------------------------------------------
+LAW OF BOTTOM FRICTION                      = 4 / Manning”s formula
+FRICTION COEFFICIENT                        = .028
+/
+/----------------------------------------------------------------------
+/                       NUMERICAL OPTIONS
+/----------------------------------------------------------------------
+EQUATIONS                        = 'SAINT-VENANT FV'
+/
+FINITE VOLUME SCHEME             = 5
+FINITE VOLUME SCHEME SPACE ORDER = 1
+FINITE VOLUME SCHEME TIME ORDER  = 1
+/
+H CLIPPING = NO
+/
+OPTION OF THE HYDROSTATIC RECONSTRUCTION = 2
+GRAPHIC PRINTOUT PERIOD          = 1000
+LISTING PRINTOUT PERIOD          = 1000
+MASS-BALANCE                     = YES
+TIME STEP                        = 6.
+DURATION                         = 345000
+DESIRED COURANT NUMBER           = 0.75
+VARIABLE TIME-STEP               = YES
+INFORMATION ABOUT SOLVER         = YES
