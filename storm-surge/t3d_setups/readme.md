@@ -6,3 +6,4 @@ Improvements:
   - Adjust "IMPLICITATION FOR DEPTH" and "IMPLICITATION FOR VELOCITIES"
   - "SOLVER FOR PROPAGATION" and "SCHEME FOR ADVECTION OF VELOCITIES"?
   - Turb models?
+  - Increasing time steps can filter out these oscillations.
