@@ -1,0 +1,134 @@
+/----------------------------------------------------------------------
+/
+/ ATHABASCA RIVER TEST CASE
+/
+/ Steering file for: TELEMAC2D
+/
+/----------------------------------------------------------------------
+/                      FILE DEFINITION
+/----------------------------------------------------------------------
+BOUNDARY CONDITIONS FILE                    = 'geo_bnd.cli'
+GEOMETRY FILE                               = 'geo_lake.slf'
+/ FORTRAN FILE                                = 'user_fortran'
+/ ASCII ATMOSPHERIC DATA FILE     = 'met_river.txt'
+BINARY ATMOSPHERIC DATA FILE    = 'wind_era5.slf'
+3D RESULT FILE                                = 'r3dHS4Layers.slf'
+AIR PRESSURE                = YES
+PRESSURE UNIT               = 1  / Pa (SI)
+/----------------------------------------------------------------------
+/                        GENERAL OPTIONS
+/----------------------------------------------------------------------
+TITLE = 'Lake Ontario'
+/ VARIABLES FOR 2D GRAPHIC PRINTOUTS             = 'U,V,H,B'
+TIME STEP                                   = 4.0
+NUMBER OF TIME STEPS                        = 84601
+GRAPHIC PRINTOUT PERIOD                     = 900
+LISTING PRINTOUT PERIOD                     = 450
+VARIABLES FOR 3D GRAPHIC PRINTOUTS = 'Z,U,V,W,DP'
+NUMBER OF HORIZONTAL LEVELS = 5
+MASS-BALANCE = YES
+/
+/----------------------------------------------------------------------
+/  TRACER(S)
+/----------------------------------------------------------------------
+/
+/ DIFFUSION OF TRACERS                        = NO
+/ COEFFICIENT FOR DIFFUSION OF TRACERS        = 0.
+/
+/----------------------------------------------------------------------
+/                      INITIAL CONDITIONS
+/----------------------------------------------------------------------
+ORIGINAL DATE OF TIME                       = 2019;10;29
+ORIGINAL HOUR OF TIME                       = 23;0;0
+/
+INITIAL TIME SET TO ZERO                    = YES
+/ PREVIOUS COMPUTATION FILE                   = 'ini_river.slf'
+/
+INITIAL CONDITIONS                          ='CONSTANT ELEVATION'
+INITIAL ELEVATION                           = 0.0
+INITIAL VALUES OF TRACERS                   = 0.0
+/ INITIAL ELEVATION                           = 124.0
+/ INITIAL DEPTH                               = 2.0
+/ INITIAL VALUES OF TRACERS                   = 0.0
+/
+/----------------------------------------------------------------------
+/                    BOUNDARY CONDITIONS
+/----------------------------------------------------------------------
+/ INLET; OUTLET
+/ LIQUID BOUNDARIES FILE                      = 'bnd_river.txt'
+/ OPTION FOR LIQUID BOUNDARIES                = 2;2;2 / not sure whether this will match number of BCs
+/ VELOCITY PROFILES                           = 1;1;1 / not sure whether this will match number of BCs
+/
+/----------------------------------------------
+/  WIND
+/----------------------------------------------
+/
+WIND                                         = YES
+OPTION FOR WIND                              = 3
+COEFFICIENT OF WIND INFLUENCE                = 1.1E-5
+COEFFICIENT OF WIND INFLUENCE VARYING WITH WIND SPEED = NO
+/ COEFFICIENT OF WIND INFLUENCE VARYING WITH WIND SPEED = YES
+/-----------------------------------------------------------------------
+/                    Spherical coordinates
+/-----------------------------------------------------------------------
+SPHERICAL COORDINATES = YES
+SPATIAL PROJECTION TYPE = 3 / latitude-longitude (in degrees).
+LATITUDE OF ORIGIN POINT  = 43.0 / dummy?
+LONGITUDE OF ORIGIN POINT = -77.5 / dummy?
+CORIOLIS = NO
+CORIOLIS COEFFICIENT = 1.E-6
+/
+/----------------------------------------------------------------------
+/                       TURBULENCE AND FRICTION for 3D
+/----------------------------------------------------------------------
+FRICTION COEFFICIENT FOR THE BOTTOM = 29.
+LAW OF BOTTOM FRICTION = 3
+/ HORIZONTAL TURBULENCE MODEL = 4
+/ VERTICAL TURBULENCE MODEL                       = 3
+/ MIXING LENGTH MODEL                             = 3
+HORIZONTAL TURBULENCE MODEL = 1
+VERTICAL TURBULENCE MODEL                       = 2
+MIXING LENGTH MODEL                             = 3
+COEFFICIENT FOR HORIZONTAL DIFFUSION OF VELOCITIES = 0.01
+COEFFICIENT FOR VERTICAL DIFFUSION OF VELOCITIES   = 0.01
+
+NON-HYDROSTATIC VERSION : YES
+/ NON-HYDROSTATIC VERSION                         : YES
+/
+/----------------------------------------------------------------------
+/                       NUMERICAL OPTIONS
+/----------------------------------------------------------------------
+NUMBER OF BOTTOM SMOOTHINGS                     : 1
+BOTTOM SMOOTHINGS AFTER USER MODIFICATIONS      : YES
+
+/--------------------------------------------------
+/	ADVECTION-DIFFUSION
+/--------------------------------------------------
+SCHEME FOR ADVECTION OF VELOCITIES              : 1
+/ SCHEME FOR ADVECTION OF VELOCITIES = 13
+/ SCHEME OPTION FOR ADVECTION OF VELOCITIES = 1
+
+FREE SURFACE GRADIENT COMPATIBILITY             : 0.2
+/
+ACCURACY FOR DIFFUSION OF VELOCITIES            : 1.E-6
+PRECONDITIONING FOR DIFFUSION OF VELOCITIES     : 34
+/---------------------------------------------------------------------/
+/     PROPAGATION                                                     /
+/---------------------------------------------------------------------/
+SOLVER FOR PROPAGATION                              : 2
+ACCURACY FOR PPE                                    : 1.E-6
+IMPLICITATION FOR DEPTH                             : 1.0
+/
+MASS-LUMPING FOR DEPTH                              : 1.
+MASS-LUMPING FOR DIFFUSION                          : 1.
+/
+/ DEFAULT VALUES UNTIL V8P0 KEPT FOR NON REGRESSION
+IMPLICITATION FOR VELOCITIES = 1.0
+ACCURACY FOR PROPAGATION = 1.E-6
+/ NH
+SOLVER FOR PPE = 2
+ACCURACY FOR PPE = 1.E-5
+PRECONDITIONING FOR PPE                             : 17
+TIDAL FLATS: TRUE
+OPTION FOR THE TREATMENT OF TIDAL FLATS: 1
+TREATMENT OF NEGATIVE DEPTHS : 1
